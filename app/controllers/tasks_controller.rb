@@ -5,8 +5,7 @@ class TasksController < ApplicationController
     unless user_signed_in?
       authenticate_user!
     end
-    # @tasks = Task.order(:created_at)
-    @tasks = current_user.tasks
+    @tasks = current_user.tasks.sort_by{|a| a[:created_at]}
   end
 
   def new
@@ -15,9 +14,6 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(title: task_params[:title], user_id: current_user[:id])
-    puts '+++++++++++++++++'
-    p task_params[:title]
-    puts '+++++++++++++++++'
     if @task.save
       redirect_to root_path
     else

@@ -1,10 +1,17 @@
 <%= turbo_frame_tag task do %>
   <%= form_with model: task, url: toggle_task_path(task) do |f| %>
-    <%= f.check_box :completed, onchange: 'this.form.requestSubmit()' %>
-    <%= f.label task.title %>
-    <%= link_to 'edit', edit_task_path(task) %>
-    <%= link_to 'delete', task_path(task),
-      data: { turbo_method: 'delete', turbo_confirm: 'Are You Sure?' }
-    %>
+    <div class="flex justify-between">
+      <div>
+        <%= f.check_box :completed, onchange: 'this.form.requestSubmit()', class: "h-4 w-4" %>
+        <%= f.label task.title, class: "text-lg" %>
+      </div>
+      <div>
+        <%= link_to 'edit', edit_task_path(task), class: " inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" %>
+        <%= link_to 'delete', task_path(task),
+          data: { turbo_method: 'delete', turbo_confirm: 'Are You Sure?' },
+          class: "inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+        %>
+      </div>
+    </div>
   <% end %>
 <% end %>

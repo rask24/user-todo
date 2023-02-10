@@ -1,0 +1,17 @@
+{
+  "name": "user-todo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:rask24/user-todo.git",
+  "author": "rask24 <rask0x18@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "postcss app/assets/stylesheets/*.css -d app/assets/stylesheets/dist/ --watch"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "postcss-cli": "^10.1.0",
+    "tailwindcss": "^3.2.6"
+  }
+}
