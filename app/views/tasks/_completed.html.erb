@@ -1,0 +1,10 @@
+<%= turbo_frame_tag task do %>
+  <%= form_with model: task, url: toggle_task_path(task) do |f| %>
+    <%= f.check_box :completed, onchange: 'this.form.requestSubmit()' %>
+    <%= f.label task.title %>
+    <%= link_to 'edit', edit_task_path(task) %>
+    <%= link_to 'delete', task_path(task),
+      data: { turbo_method: 'delete', turbo_confirm: 'Are You Sure?' }
+    %>
+  <% end %>
+<% end %>
