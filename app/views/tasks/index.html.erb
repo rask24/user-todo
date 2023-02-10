@@ -1,4 +1,11 @@
 <h1>Tasks</h1>
+<h2>
+  <%= current_user[:name] %>
+</h2>
+<div>
+  <%= link_to 'logout', destroy_user_session_path,
+    data: { turbo_method: 'delete', turbo_confirm: 'Are You Sure?' }  %>
+</div>
 <%= link_to 'New', new_task_path %>
 <div>
   <ul>

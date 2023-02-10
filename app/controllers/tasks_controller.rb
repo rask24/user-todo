@@ -2,7 +2,11 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :update, :destroy, :toggle]
 
   def index
-    @tasks = Task.order(:created_at)
+    unless user_signed_in?
+      authenticate_user!
+    end
+    # @tasks = Task.order(:created_at)
+    @tasks = current_user.tasks
   end
 
   def new
@@ -10,8 +14,10 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
-    p @task
+    @task = Task.new(title: task_params[:title], user_id: current_user[:id])
+    puts '+++++++++++++++++'
+    p task_params[:title]
+    puts '+++++++++++++++++'
     if @task.save
       redirect_to root_path
     else
